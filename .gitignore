@@ -1,0 +1,7 @@
+*.class
+*.orig
+bin/**
+web/WEB-INF/classes/**
+web/.#webclasspath
+work/**
+Thumbs.db

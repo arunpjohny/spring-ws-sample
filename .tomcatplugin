@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<tomcatProjectProperties>
+    <rootDir>web</rootDir>
+    <exportSource>false</exportSource>
+    <reloadable>true</reloadable>
+    <redirectLogger>false</redirectLogger>
+    <updateXml>true</updateXml>
+    <warLocation></warLocation>
+    <extraInfo></extraInfo>
+    <webPath>/spring-ws-sample</webPath>
+    <webClassPathEntries>
+        <webClassPathEntry>/spring-ws-sample/lib/commons-logging-1.1.1.jar</webClassPathEntry>
+        <webClassPathEntry>/spring-ws-sample/lib/log4j-1.2.15.jar</webClassPathEntry>
+        <webClassPathEntry>/spring-ws-sample/lib/org.springframework.asm-3.0.3.RELEASE.jar</webClassPathEntry>
+        <webClassPathEntry>/spring-ws-sample/lib/org.springframework.beans-3.0.3.RELEASE.jar</webClassPathEntry>
+        <webClassPathEntry>/spring-ws-sample/lib/org.springframework.context-3.0.3.RELEASE.jar</webClassPathEntry>
+        <webClassPathEntry>/spring-ws-sample/lib/org.springframework.context.support-3.0.3.RELEASE.jar</webClassPathEntry>
+        <webClassPathEntry>/spring-ws-sample/lib/org.springframework.core-3.0.3.RELEASE.jar</webClassPathEntry>
+        <webClassPathEntry>/spring-ws-sample/lib/org.springframework.expression-3.0.3.RELEASE.jar</webClassPathEntry>
+        <webClassPathEntry>/spring-ws-sample/lib/org.springframework.instrument-3.0.3.RELEASE.jar</webClassPathEntry>
+        <webClassPathEntry>/spring-ws-sample/lib/org.springframework.instrument.tomcat-3.0.3.RELEASE.jar</webClassPathEntry>
+        <webClassPathEntry>/spring-ws-sample/lib/org.springframework.web-3.0.3.RELEASE.jar</webClassPathEntry>
+        <webClassPathEntry>/spring-ws-sample/lib/org.springframework.web.servlet-3.0.3.RELEASE.jar</webClassPathEntry>
+        <webClassPathEntry>/spring-ws-sample/web/WEB-INF/classes</webClassPathEntry>
+    </webClassPathEntries>
+</tomcatProjectProperties>
