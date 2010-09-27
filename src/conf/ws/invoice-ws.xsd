@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<schema targetNamespace="http://arun.com/ws/invoice-ops/" xmlns="http://www.w3.org/2001/XMLSchema"
+	xmlns:tns="http://arun.com/ws/invoice-ops/">
+
+	<element name="invoiceCountRequest"
+		type="tns:invoiceCountRequest">
+	</element>
+
+	<complexType name="invoiceCountRequest">
+		<sequence>			<element name="code" type="string" minOccurs="1"
+				maxOccurs="1">
+			</element>
+		</sequence>
+	</complexType>
+
+	<complexType name="invoiceCountResponse">
+		<sequence>
+
+			<element name="count" type="int"></element>
+		</sequence>
+	</complexType>
+
+	<element name="invoiceCountResponse"
+		type="tns:invoiceCountResponse">
+	</element>
+</schema>

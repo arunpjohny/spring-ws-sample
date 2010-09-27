@@ -8,7 +8,7 @@
            http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.0.xsd">
 
 	<context:annotation-config />
-	<context:component-scan base-package="com.arun.controller" />
+	<context:component-scan base-package="com.arun" />
 
 	<!-- Spring MVC default handlers. This needs to be added because we need 
 		to add some custom handlers to handle the web service related requests. -->

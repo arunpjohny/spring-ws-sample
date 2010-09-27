@@ -1,10 +1,122 @@
 <?xml version="1.0" encoding="UTF-8"?>
+
 <beans xmlns="http://www.springframework.org/schema/beans"
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:context="http://www.springframework.org/schema/context"
 	xmlns:tx="http://www.springframework.org/schema/tx"
-	xsi:schemaLocation="
-           http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
-           http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-3.0.xsd
-           http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.0.xsd">
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.0.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-2.5.xsd
+		http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-3.0.xsd">
+
+	<!-- Spring Web Service Configurations -->
+
+	<!-- Web service request mapping for messageDispatcher -->
+	<bean name="/ws.ws" id="messageDispatcher"
+		class="org.springframework.ws.soap.server.SoapMessageDispatcher" />
+
+	<bean id="messageFactory"
+		class="org.springframework.ws.soap.axiom.AxiomSoapMessageFactory">
+		<property name="payloadCaching" value="true" />
+	</bean>
+
+	<bean
+		class="org.springframework.ws.transport.http.WebServiceMessageReceiverHandlerAdapter">
+		<property name="messageFactory" ref="messageFactory" />
+	</bean>
+	<bean
+		class="org.springframework.ws.transport.http.WsdlDefinitionHandlerAdapter">
+	</bean>
+	<bean class="org.springframework.ws.transport.http.XsdSchemaHandlerAdapter">
+	</bean>
+
+	<!-- Used to load the annotated end points -->
+	<bean
+		class="org.springframework.ws.server.endpoint.mapping.PayloadRootAnnotationMethodEndpointMapping">
+		<property name="interceptors">
+			<list>
+				<ref bean="loggingInterceptor" />
+				<ref bean="wsSecurityInterceptor" />
+			</list>
+		</property>
+	</bean>
+
+
+	<!-- WS request handling adapters used by messageDispatcher -->
+	<bean
+		class="org.springframework.ws.server.endpoint.adapter.MessageMethodEndpointAdapter"></bean>
+	<bean
+		class="org.springframework.ws.server.endpoint.adapter.MessageEndpointAdapter"></bean>
+	<bean
+		class="org.springframework.ws.server.endpoint.adapter.PayloadEndpointAdapter"></bean>
+	<bean
+		class="org.springframework.ws.server.endpoint.adapter.MessageMethodEndpointAdapter"></bean>
+	<bean
+		class="org.springframework.ws.server.endpoint.adapter.PayloadMethodEndpointAdapter"></bean>
+	<bean
+		class="org.springframework.ws.server.endpoint.adapter.XPathParamAnnotationMethodEndpointAdapter">
+	</bean>
+
+	<!-- Security -->
+	<bean id="wsSecurityInterceptor"
+		class="org.springframework.ws.soap.security.wss4j.Wss4jSecurityInterceptor">
+		<property name="validationActions" value="UsernameToken" />
+		<property name="validationCallbackHandler">
+			<bean
+				class="org.springframework.ws.soap.security.wss4j.callback.SimplePasswordValidationCallbackHandler">
+				<property name="users">
+					<props>
+						<prop key="Bert">Ernie</prop>
+					</props>
+				</property>
+			</bean>
+		</property>
+	</bean>
+
+	<!-- Logging -->
+	<bean id="loggingInterceptor"
+		class="org.springframework.ws.soap.server.endpoint.interceptor.SoapEnvelopeLoggingInterceptor" />
+
+	<!-- Exception resolver -->
+	<bean id="springWsExceptionResolver"
+		class="org.springframework.ws.soap.server.endpoint.SoapFaultMappingExceptionResolver">
+		<property name="order" value="2" />
+		<property name="defaultFault" value="SERVER" />
+		<property name="exceptionMappings">
+			<props>
+				<prop key="org.springframework.oxm.ValidationFailureException">CLIENT,Invalid request modified</prop>
+			</props>
+		</property>
+	</bean>
+	<bean id="springWsAnnatationExceptionResolver"
+		class="org.springframework.ws.soap.server.endpoint.SoapFaultAnnotationExceptionResolver">
+		<property name="order" value="1" />
+		<property name="defaultFault" value="SERVER" />
+	</bean>
+
+	<!-- Spring Web Service definitions -->
+	<bean name="/ws/invoice-ops.wsdl"
+		class="org.springframework.ws.wsdl.wsdl11.DefaultWsdl11Definition">
+		<property name="schema">
+			<bean class="org.springframework.xml.xsd.SimpleXsdSchema">
+				<property name="xsd" value="classpath:/ws/invoice-ws.xsd" />
+			</bean>
+		</property>
+		<property name="portTypeName" value="adminOpsService" />
+		<property name="serviceName" value="adminOpsService" />
+		<property name="locationUri" value="http://arun.com/invoice-ops/ws" />
+	</bean>
+	<bean id="invoiceJaxb2Marshaller" class="org.springframework.oxm.jaxb.Jaxb2Marshaller">
+		<property name="contextPaths">
+			<list>
+				<value>com.arun.ws.invoice.model</value>
+			</list>
+		</property>
+	</bean>
+	<bean
+		class="org.springframework.ws.server.endpoint.adapter.MarshallingMethodEndpointAdapter">
+		<description>Enables the MessageDispatchServlet to invoke methods
+			requiring OXM marshalling.</description>
+		<property name="marshaller" ref="invoiceJaxb2Marshaller" />
+		<property name="unmarshaller" ref="invoiceJaxb2Marshaller" />
+	</bean>
 
 </beans>
