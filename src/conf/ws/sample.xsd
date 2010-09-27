@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns="http://equilibriums.com/sample-spring-ws"
+targetNamespace="http://equilibriums.com/sample-spring-ws"
+elementFormDefault="qualified" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+
+   <xs:element name="sampleRequest" type="sampleRequestType" />
+
+	<xs:complexType name="sampleRequestType">
+		<xs:sequence>
+			<xs:element name="request" type="xs:string" minOccurs="0" />
+		</xs:sequence>
+	</xs:complexType>
+	
+	<xs:element name="sampleResponse" type="sampleResponseType" />
+	
+   	<xs:complexType name="sampleResponseType">
+		<xs:sequence>
+			<xs:element name="response" type="xs:string" minOccurs="0" />
+		</xs:sequence>
+	</xs:complexType>
+
+</xs:schema>

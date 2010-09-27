@@ -93,6 +93,8 @@
 	</bean>
 
 	<!-- Spring Web Service definitions -->
+
+	<!-- Invoice -->
 	<bean name="/ws/invoice-ops.wsdl"
 		class="org.springframework.ws.wsdl.wsdl11.DefaultWsdl11Definition">
 		<property name="schema">
@@ -119,4 +121,30 @@
 		<property name="unmarshaller" ref="invoiceJaxb2Marshaller" />
 	</bean>
 
+	<!-- Sample -->
+	<bean name="/ws/sample-ops.wsdl"
+		class="org.springframework.ws.wsdl.wsdl11.DefaultWsdl11Definition">
+		<property name="schema">
+			<bean class="org.springframework.xml.xsd.SimpleXsdSchema">
+				<property name="xsd" value="classpath:/ws/sample.xsd" />
+			</bean>
+		</property>
+		<property name="portTypeName" value="adminOpsService" />
+		<property name="serviceName" value="adminOpsService" />
+		<property name="locationUri" value="http://arun.com/sample-ops/ws" />
+	</bean>
+	<bean id="sampleJaxb2Marshaller" class="org.springframework.oxm.jaxb.Jaxb2Marshaller">
+		<property name="contextPaths">
+			<list>
+				<value>com.arun.ws.sample.model</value>
+			</list>
+		</property>
+	</bean>
+	<bean
+		class="org.springframework.ws.server.endpoint.adapter.MarshallingMethodEndpointAdapter">
+		<description>Enables the MessageDispatchServlet to invoke methods
+			requiring OXM marshalling.</description>
+		<property name="marshaller" ref="sampleJaxb2Marshaller" />
+		<property name="unmarshaller" ref="sampleJaxb2Marshaller" />
+	</bean>
 </beans>

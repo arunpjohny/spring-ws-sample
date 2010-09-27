@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.0.xsd">
+
+	<bean id="client"
+		class="com.arun.test.ws.sample.SampleRequestTest">
+		<property name="webServiceTemplate" ref="webServiceTemplate" />
+	</bean>
+
+	<bean id="messageFactory"
+		class="org.springframework.ws.soap.axiom.AxiomSoapMessageFactory">
+		<property name="payloadCaching" value="true" />
+	</bean>
+
+	<bean id="webServiceTemplate" class="org.springframework.ws.client.core.WebServiceTemplate">
+		<constructor-arg ref="messageFactory" />
+		<property name="marshaller" ref="jaxb2Marshaller" />
+		<property name="unmarshaller" ref="jaxb2Marshaller" />
+		<property name="messageSender">
+			<bean
+				class="org.springframework.ws.transport.http.HttpsUrlConnectionMessageSender">
+				<property name="hostnameVerifier">
+					<bean class="com.arun.http.TrustAllHostNameVerifier"></bean>
+				</property>
+				<property name="trustManagers">
+					<list>
+						<bean class="com.arun.http.TrustAllX509TrustManager"></bean>
+					</list>
+				</property>
+			</bean>
+		</property>
+		<property name="defaultUri" value="http://127.0.0.1:8080/spring-ws-sample/ws.ws" />
+		<property name="interceptors">
+			<list>
+				<ref bean="wsClientSecurityInterceptor" />
+			</list>
+		</property>
+	</bean>
+
+	<bean id="jaxb2Marshaller" class="org.springframework.oxm.jaxb.Jaxb2Marshaller">
+		<property name="contextPath"
+			value="com.arun.ws.sample.model" />
+	</bean>
+
+	<bean id="wsClientSecurityInterceptor"
+		class="org.springframework.ws.soap.security.wss4j.Wss4jSecurityInterceptor">
+		<property name="securementActions" value="UsernameToken" />
+		<property name="securementUsername" value="Bert" />
+		<property name="securementPassword" value="Ernie" />
+	</bean>
+</beans>
