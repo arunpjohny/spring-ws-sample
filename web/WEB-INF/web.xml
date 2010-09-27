@@ -13,10 +13,16 @@
 	<context-param>
 		<param-name>contextConfigLocation</param-name>
 		<param-value>
-			/WEB-INF/applicationContext.xml 
+			/WEB-INF/application-context.xml 
 			/WEB-INF/spring-ws-context.xml
 		</param-value>
 	</context-param>
+
+	<listener>
+		<listener-class>
+			org.springframework.web.context.ContextLoaderListener
+		</listener-class>
+	</listener>
 
 	<servlet>
 		<servlet-name>springapp</servlet-name>

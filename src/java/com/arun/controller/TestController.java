@@ -10,11 +10,6 @@ import org.springframework.web.bind.annotation.ResponseBody;
 @Controller
 public class TestController {
 
-	@Autowired
-	public TestController() {
-		System.out.println("TestController Constructor");
-	}
-
 	@ResponseBody
 	@RequestMapping("/test.htm")
 	public String test(HttpServletRequest request) {
