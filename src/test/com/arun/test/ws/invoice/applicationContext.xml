@@ -44,6 +44,12 @@
 				<value>com.arun.ws.common</value>
 			</list>
 		</property>
+		<property name="schemas">
+			<list>
+				<value>classpath:ws/common.xsd</value>
+				<value>classpath:ws/invoice-ws.xsd</value>
+			</list>
+		</property>
 	</bean>
 
 	<bean id="wsClientSecurityInterceptor"

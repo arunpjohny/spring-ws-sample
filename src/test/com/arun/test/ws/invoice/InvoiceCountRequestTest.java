@@ -26,9 +26,9 @@ public class InvoiceCountRequestTest {
 			InvoiceCountRequest request = new InvoiceCountRequest();
 			request.setFromDate(new Date());
 			request.setToDate(new Date());
-			request.getCodes().add("code1");
-			request.getCodes().add("code2");
-			request.getCodes().add("code3");
+			request.getCode().add("code1");
+			request.getCode().add("code2");
+			request.getCode().add("code3");
 
 			InvoiceCountResponse response = (InvoiceCountResponse) webServiceTemplate
 					.marshalSendAndReceive(request);

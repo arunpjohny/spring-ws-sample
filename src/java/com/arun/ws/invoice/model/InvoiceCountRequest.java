@@ -16,8 +16,8 @@ import com.arun.ws.jaxb.adapter.DateAdapter;
 
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlRootElement(namespace = "http://arun.com/ws/invoice-ops/", name = "invoiceCountRequest")
-@XmlType(name = "invoiceCountRequest", propOrder = { "fromDate", "toDate",
-		"codes" })
+@XmlType(name = "invoiceCountRequest", propOrder = { "code", "fromDate",
+		"toDate" })
 public class InvoiceCountRequest {
 
 	@XmlElement(required = true, type = String.class)
@@ -29,7 +29,7 @@ public class InvoiceCountRequest {
 	@XmlSchemaType(name = "dateTime")
 	protected Date toDate;
 	@XmlElement(required = true)
-	protected List<String> codes;
+	protected List<String> code;
 
 	public Date getFromDate() {
 		return fromDate;
@@ -47,11 +47,11 @@ public class InvoiceCountRequest {
 		this.toDate = value;
 	}
 
-	public List<String> getCodes() {
-		if (codes == null) {
-			codes = new ArrayList<String>();
+	public List<String> getCode() {
+		if (code == null) {
+			code = new ArrayList<String>();
 		}
-		return this.codes;
+		return this.code;
 	}
 
 }

@@ -26,7 +26,7 @@ public class InvoiceCountRequestEndPoint {
 		}
 		InvoiceCountResponse response = new InvoiceCountResponse();
 
-		for (String code : request.getCodes()) {
+		for (String code : request.getCode()) {
 			response.getCountMap().put(code, RandomUtils.nextInt());
 		}
 
