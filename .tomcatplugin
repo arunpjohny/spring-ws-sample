@@ -11,6 +11,7 @@
     <webClassPathEntries>
         <webClassPathEntry>/spring-ws-sample/lib/axiom-api-1.2.5.jar</webClassPathEntry>
         <webClassPathEntry>/spring-ws-sample/lib/axiom-impl-1.2.5.jar</webClassPathEntry>
+        <webClassPathEntry>/spring-ws-sample/lib/commons-lang-2.4.jar</webClassPathEntry>
         <webClassPathEntry>/spring-ws-sample/lib/commons-logging-1.1.1.jar</webClassPathEntry>
         <webClassPathEntry>/spring-ws-sample/lib/jaxb-api-2.2.1.jar</webClassPathEntry>
         <webClassPathEntry>/spring-ws-sample/lib/jaxb-impl-2.2.1.jar</webClassPathEntry>
