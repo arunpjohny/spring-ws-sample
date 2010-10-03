@@ -1,6 +1,8 @@
 package com.arun.test.ws.invoice;
 
 import java.io.IOException;
+import java.util.Calendar;
+import java.util.Date;
 
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
@@ -22,7 +24,12 @@ public class InvoiceCountRequestTest {
 
 		try {
 			InvoiceCountRequest request = new InvoiceCountRequest();
-			
+			request.setFromDate(new Date());
+			request.setToDate(new Date());
+			request.getCodes().add("code1");
+			request.getCodes().add("code2");
+			request.getCodes().add("code3");
+
 			InvoiceCountResponse response = (InvoiceCountResponse) webServiceTemplate
 					.marshalSendAndReceive(request);
 

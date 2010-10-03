@@ -7,9 +7,12 @@
 	</element>
 
 	<complexType name="invoiceCountRequest">
-		<sequence>			<element name="code" type="string" minOccurs="1"
-				maxOccurs="1">
+		<sequence>
+			<element name="code" type="string" minOccurs="1"
+				maxOccurs="unbounded">
 			</element>
+			<element name="fromDate" type="dateTime"></element>
+			<element name="toDate" type="dateTime"></element>
 		</sequence>
 	</complexType>
 
