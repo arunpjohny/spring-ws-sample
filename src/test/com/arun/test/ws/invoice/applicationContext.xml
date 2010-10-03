@@ -3,8 +3,7 @@
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.0.xsd">
 
-	<bean id="client"
-		class="com.arun.test.ws.invoice.InvoiceCountRequestTest">
+	<bean id="client" class="com.arun.test.ws.invoice.InvoiceCountRequestTest">
 		<property name="webServiceTemplate" ref="webServiceTemplate" />
 	</bean>
 
@@ -39,8 +38,12 @@
 	</bean>
 
 	<bean id="jaxb2Marshaller" class="org.springframework.oxm.jaxb.Jaxb2Marshaller">
-		<property name="contextPath"
-			value="com.arun.ws.invoice.model" />
+		<property name="contextPaths">
+			<list>
+				<value>com.arun.ws.invoice.model</value>
+				<value>com.arun.ws.common</value>
+			</list>
+		</property>
 	</bean>
 
 	<bean id="wsClientSecurityInterceptor"

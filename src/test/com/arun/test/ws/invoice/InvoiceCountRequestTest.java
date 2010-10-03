@@ -1,8 +1,8 @@
 package com.arun.test.ws.invoice;
 
 import java.io.IOException;
-import java.util.Calendar;
 import java.util.Date;
+import java.util.Map.Entry;
 
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
@@ -34,6 +34,12 @@ public class InvoiceCountRequestTest {
 					.marshalSendAndReceive(request);
 
 			System.out.println("result: " + response);
+			
+			System.out.println("Contents of the map");
+			for (Entry<String, Object> entry : response.getCountMap().entrySet()) {
+				System.out.println(entry.getKey()+" : " + entry.getValue());
+			}
+			
 		} catch (SoapFaultClientException e) {
 			e.printStackTrace();
 		} catch (Exception e) {

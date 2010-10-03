@@ -1,15 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <schema targetNamespace="http://arun.com/ws/invoice-ops/" xmlns="http://www.w3.org/2001/XMLSchema"
-	xmlns:tns="http://arun.com/ws/invoice-ops/">
+	xmlns:tns="http://arun.com/ws/invoice-ops/" xmlns:common="http://arun.com/ws/commons/">
 
-	<element name="invoiceCountRequest"
-		type="tns:invoiceCountRequest">
+	<import schemaLocation="common.xsd" namespace="http://arun.com/ws/commons/"></import>
+	<element name="invoiceCountRequest" type="tns:invoiceCountRequest">
 	</element>
 
 	<complexType name="invoiceCountRequest">
 		<sequence>
-			<element name="code" type="string" minOccurs="1"
-				maxOccurs="unbounded">
+			<element name="code" type="string" minOccurs="1" maxOccurs="unbounded">
 			</element>
 			<element name="fromDate" type="dateTime"></element>
 			<element name="toDate" type="dateTime"></element>
@@ -19,11 +18,10 @@
 	<complexType name="invoiceCountResponse">
 		<sequence>
 
-			<element name="count" type="int"></element>
+			<element name="countMap" type="common:SimpleMap"></element>
 		</sequence>
 	</complexType>
 
-	<element name="invoiceCountResponse"
-		type="tns:invoiceCountResponse">
+	<element name="invoiceCountResponse" type="tns:invoiceCountResponse">
 	</element>
 </schema>

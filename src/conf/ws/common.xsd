@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<schema targetNamespace="http://arun.com/ws/commons/" xmlns="http://www.w3.org/2001/XMLSchema" xmlns:tns="http://arun.com/ws/commons/">
+    <complexType name="SimpleMap">
+    	<sequence>
+    		<element name="Entry" type="tns:SimpleMapEntry" minOccurs="0" maxOccurs="unbounded"></element>
+    	</sequence>
+    </complexType>
+
+    <complexType name="SimpleMapEntry">
+        <sequence>
+        	<any></any>
+        </sequence>
+        <attribute name="key" type="string"></attribute>
+    </complexType>
+
+
+    <simpleType name="StringWrapper">
+    	<restriction base="string"></restriction>
+    </simpleType>
+
+    <element name="SimpleMap" type="tns:SimpleMap"></element>
+
+    <element name="SimpleMapEntry" type="tns:SimpleMapEntry"></element>
+
+    <element name="StringWrapper" type="tns:StringWrapper"></element>
+
+    <simpleType name="IntegerWrapper">
+    	<restriction base="int"></restriction>
+    </simpleType>
+
+    <element name="IntegerWrapper" type="tns:IntegerWrapper"></element>
+
+
+
+    <simpleType name="FloatWrapper">
+    	<restriction base="float"></restriction>
+    </simpleType>
+
+    <element name="FloatWrapper" type="tns:FloatWrapper"></element>
+
+    <simpleType name="BigDecimalWrapper">
+    	<restriction base="float"></restriction>
+    </simpleType>
+
+    <element name="BigDecimalWrapper" type="tns:BigDecimalWrapper"></element>
+
+    <complexType name="DateWrapper">
+    	<sequence>
+    		<element name="value" type="dateTime"></element>
+    	</sequence>
+    </complexType>
+
+    <element name="DateWrapper" type="tns:DateWrapper"></element>
+</schema>

@@ -110,6 +110,7 @@
 		<property name="contextPaths">
 			<list>
 				<value>com.arun.ws.invoice.model</value>
+				<value>com.arun.ws.common</value>
 			</list>
 		</property>
 	</bean>
